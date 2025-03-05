@@ -75,17 +75,23 @@ namespace ASP_MVC.Controllers
 		// GET: StudentController/Edit/5
 		public ActionResult Edit(int id)
 		{
-			return View();
+			Student student = _studentService.GetById(id);
+			StudentUpdate model = student.ToEditForm();
+			return View(model);
 		}
 
 		// POST: StudentController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public ActionResult Edit(int id, StudentUpdate form)
 		{
 			try
 			{
-				return RedirectToAction(nameof(Index));
+				ModelState.MinAge((DateOnly)form.Birth_date, nameof(form.Birth_date));
+				if(!ModelState.IsValid)throw new ArgumentException(nameof(form));
+
+				_studentService.Update(id,form.ToBLL());
+				return RedirectToAction(nameof(Details), new {id});
 			}
 			catch
 			{

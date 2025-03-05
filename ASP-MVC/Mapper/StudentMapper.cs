@@ -68,5 +68,43 @@ namespace ASP_MVC.Mapper
 		}
 
 
+		/// <summary>
+		/// Convert Data From StudentUpdateForm to Bll Student
+		/// </summary>
+		/// <param name="student">StudentUpdateForm</param>
+		/// <returns>Bll Student</returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static Student ToBLL(this StudentUpdate student)
+		{
+			if (student is null) throw new ArgumentNullException(nameof(student));
+			return new Student(
+				student.Student_id,
+				student.First_name,
+				student.Last_name,
+				student.Login,
+				student.Birth_date,
+				student.Course_id,
+				student.Year_result,
+				student.Section_id
+			);
+		}
+
+		public static StudentUpdate ToEditForm(this Student student)
+		{
+			if( student is null) throw new ArgumentNullException( nameof(student));
+			return new StudentUpdate
+			{
+				Student_id = student.Student_id,
+				First_name = student.First_name,
+				Last_name = student.Last_name,
+				Birth_date = student.Birth_date,
+				Year_result = student.Year_result,
+				Section_id = student.Section_id,
+				Course_id = student.Course_id,
+				Login = student.Login
+			};
+		}
+
+
 	}
 }

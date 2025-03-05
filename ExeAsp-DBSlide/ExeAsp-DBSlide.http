@@ -1,0 +1,6 @@
+@ExeAsp_DBSlide_HostAddress = http://localhost:5160
+
+GET {{ExeAsp_DBSlide_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -23,5 +23,20 @@ namespace BLL.Mapper
 					student.Year_result
 				);
 		}
+
+		public static DAL.Entities.Student ToDAL(this Student student)
+		{
+			if (student is null) throw new ArgumentNullException(nameof(student));
+			return new DAL.Entities.Student() {
+					Student_id = student.Student_id,
+					First_name = student.First_name,
+					Last_name = student.Last_name,
+					Login = student.Login,
+					Birth_date = student.Birth_date,
+					Course_id = student.Course_id,
+					Section_id = student.Section_id,
+					Year_result = student.Year_result
+				};
+		}
 	}
 }

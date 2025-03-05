@@ -1,4 +1,5 @@
-﻿using ASP_MVC.Mapper;
+﻿using ASP_MVC.Handlers;
+using ASP_MVC.Mapper;
 using ASP_MVC.Models.Student;
 using BLL.Entities;
 using Common.Repositories;
@@ -55,11 +56,15 @@ namespace ASP_MVC.Controllers
 		// POST: StudentController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public ActionResult Create(StudentCreate form)
 		{
 			try
 			{
-				return RedirectToAction(nameof(Index));
+				ModelState.MinAge((DateOnly)form.Birth_date, nameof(form.Birth_date));
+				if(!ModelState.IsValid) throw new ArgumentException(nameof(form));
+				int id = _studentService.Insert(form.ToBLL());
+
+				return RedirectToAction("Details", new { id });
 			}
 			catch
 			{

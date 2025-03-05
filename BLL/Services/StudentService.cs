@@ -31,20 +31,20 @@ namespace BLL.Services
 			return student;
 		}
 
-		public int Insert(Student entity)
+		public int Insert(Student student)
 		{
-			throw new NotImplementedException();
+			return _studentService.Insert(student.ToDAL());
 		}
 
-		public void Update(int id, Student entity)
+		public void Update(int id, Student student)
 		{
-			throw new NotImplementedException();
+			_studentService.Update(id, student.ToDAL());
 		}
 
 
 		public void Delete(int id)
 		{
-			throw new NotImplementedException();
+			_studentService.Delete(id);
 		}
 	}
 }

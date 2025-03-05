@@ -5,6 +5,12 @@ namespace ASP_MVC.Mapper
 {
 	internal static class StudentMapper
 	{
+		/// <summary>
+		/// BLL Student  To StudentListItem
+		/// </summary>
+		/// <param name="student">BLL Student</param>
+		/// <returns>StudentListItem</returns>
+		/// <exception cref="ArgumentNullException"></exception>
 		public static StudentListItem ToListItem(this Student student)
 		{
 			if(student is null) throw new ArgumentNullException(nameof(student));
@@ -18,6 +24,12 @@ namespace ASP_MVC.Mapper
 			};
 		}
 
+		/// <summary>
+		/// BLL Student To StudentDetails
+		/// </summary>
+		/// <param name="student">BLL Student</param>
+		/// <returns>StudentDetail</returns>
+		/// <exception cref="ArgumentNullException"></exception>
 		public static StudentDetails ToStudentDetails(this Student student)
 		{
 			if(student is null) throw new ArgumentNullException( nameof(student));
@@ -33,5 +45,28 @@ namespace ASP_MVC.Mapper
 				Year_result = student.Year_result,
 			};
 		}
+
+		/// <summary>
+		/// Convert data from createForm To BLL Student
+		/// </summary>
+		/// <param name="student">StudentCreateForm</param>
+		/// <returns>BLL Student</returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static Student ToBLL(this StudentCreate student)
+		{
+			if(student is null) throw new ArgumentNullException(nameof (student));
+			return new Student(
+				-1,
+				student.First_name,
+				student.Last_name,
+				null,
+				student.Birth_date,
+				"0",
+				null,
+				null
+			);
+		}
+
+
 	}
 }

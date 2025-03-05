@@ -29,7 +29,7 @@ namespace BLL.Entities
 			Section_id = section_id;
 		}
 
-		public Student(int student_id, string? first_name, string? last_name, int? yearResult = null, string course_id = "EG1010" )
+		public Student(int student_id, string? first_name, string? last_name, int? yearResult = null, string course_id = "0" )
 		{
 			Student_id = student_id;
 			First_name = first_name;

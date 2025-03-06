@@ -84,11 +84,11 @@ namespace DAL.Services
 			{
 				using (SqlCommand command = connection.CreateCommand())
 				{
-					command.CommandText = "Update Section Set section_name = @section_name, delegate_id = @delegate_id where section_id = @section_id" ;
+					command.CommandText = "Update Section Set section_id = @section_id, section_name = @section_name, delegate_id = @delegate_id where section_id = @section_id" ;
 					command.CommandType = CommandType.Text;
 					command.Parameters.AddWithValue(nameof(Section.Section_Id), id);
-					command.Parameters.AddWithValue(nameof(Section.Section_Name), section.Section_Name);
-					command.Parameters.AddWithValue(nameof(Section.Delegate_id), section.Delegate_id);
+					command.Parameters.AddWithValue(nameof(Section.Section_Name), (section.Section_Name is null)? DBNull.Value : section.Section_Name);
+					command.Parameters.AddWithValue(nameof(Section.Delegate_id), (section.Delegate_id is null)? DBNull.Value : section.Delegate_id);
 					connection.Open();
 					command.ExecuteNonQuery();
 				}

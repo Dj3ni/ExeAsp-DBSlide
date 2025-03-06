@@ -74,16 +74,19 @@ namespace ASP_MVC.Controllers
 		// GET: SectionController/Edit/5
 		public ActionResult Edit(int id)
 		{
-			return View();
+			SectionEdit model = _sectionService.GetById(id).ToEdit();
+			return View(model);
 		}
 
 		// POST: SectionController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public ActionResult Edit(int id, SectionEdit form)
 		{
 			try
 			{
+				if(!ModelState.IsValid) throw new ArgumentException(nameof(form));
+				_sectionService.Update(id, form.ToBLL());
 				return RedirectToAction(nameof(Index));
 			}
 			catch

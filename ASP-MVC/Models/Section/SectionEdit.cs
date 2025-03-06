@@ -5,11 +5,14 @@ namespace ASP_MVC.Models.Section
 {
 	public class SectionEdit
 	{
-		[ScaffoldColumn(false)]
+		[DisplayName("Section ID")]
 		public int Section_Id { get; set; }
 
 		[DisplayName("Section Name")]
-		public string Section_Name { get; set; }
+		public string? Section_Name { get; set; }
+
+		[ScaffoldColumn(false)]
+		public int? Delegate_Id { get; set; }
 
 		//public Student? Delegate { get; set; } 
 	}

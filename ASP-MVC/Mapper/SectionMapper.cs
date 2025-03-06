@@ -19,7 +19,7 @@ namespace ASP_MVC.Mapper
 				Section_Id = section.Section_Id,
 				Section_Name = section.Section_Name,
 				Delegate_Id = section.Delegate_id,
-				//Delegate_Name = section.Delegate_name
+				Delegate_Name = section.Delegate_Name
 			};
 		}
 

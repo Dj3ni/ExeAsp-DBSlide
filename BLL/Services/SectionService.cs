@@ -12,10 +12,14 @@ namespace BLL.Services
 	public class SectionService : ISectionRepository<Section>
 	{
 		private readonly ISectionRepository<DAL.Entities.Section> _sectionService;
+		private readonly IStudentRepository<DAL.Entities.Student> _studentService;
 
-		public SectionService(ISectionRepository<DAL.Entities.Section> sectionService)
+		public SectionService(
+			ISectionRepository<DAL.Entities.Section> sectionService,
+			IStudentRepository<DAL.Entities.Student> studentService)
 		{
 			_sectionService = sectionService;
+			_studentService = studentService;
 		}
 
 		public IEnumerable<Section> GetAll()
@@ -25,7 +29,14 @@ namespace BLL.Services
 
 		public Section GetById(int id)
 		{
-			return _sectionService.GetById(id).ToBLL();
+			Section section = _sectionService.GetById(id).ToBLL();
+			if (section.Delegate_id is null) section.Delegate_Name = "Ghost";
+			else
+			{
+				Student student = _studentService.GetById((int)section.Delegate_id).ToBLL();
+				section.Delegate_Name = $"{student.First_name} {student.Last_name}";
+			}
+			return section;
 		}
 
 		public int Insert(Section section)

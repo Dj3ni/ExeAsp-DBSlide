@@ -14,6 +14,7 @@ namespace ASP_MVC.Models.Section
 		[DisplayName("Delegate")]
 		public int? Delegate_Id { get; set; }
 
-		//public string? Delegate_Name { get;set; }
+		[DisplayName("Delegate Name")]
+		public string? Delegate_Name { get;set; }
 	}
 }

@@ -14,6 +14,7 @@ namespace ASP_MVC.Models.Section
 		[ScaffoldColumn(false)]
 		public int? Delegate_Id { get; set; }
 
-		//public Student? Delegate { get; set; } 
+		[DisplayName("Delegate Name")]
+		public string? Delegate_Name { get; set; } 
 	}
 }

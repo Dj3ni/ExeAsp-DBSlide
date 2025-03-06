@@ -13,6 +13,8 @@ namespace BLL.Entities
 		public string? Section_Name { get; set; }
 		public int? Delegate_id { get; set; }
 
+		public string? Delegate_Name { get; set; }
+
 		public Section(int section_Id, string? section_Name, int? delegate_id)
 		{
 			Section_Id = section_Id;

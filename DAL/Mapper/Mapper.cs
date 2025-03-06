@@ -12,7 +12,7 @@ namespace DAL.Mapper
 	{
 		public static Student ToStudent(this IDataReader reader)
 		{
-			if (reader == null) throw new ArgumentNullException(nameof(reader));
+			if (reader is null) throw new ArgumentNullException(nameof(reader));
 			return new Student()
 			{
 				Student_id = (int)reader[nameof(Student.Student_id)],
@@ -23,6 +23,17 @@ namespace DAL.Mapper
 				Year_result = (reader[nameof(Student.Year_result)] is DBNull) ? null : (int)reader[nameof(Student.Year_result)],
 				Course_id = (string)reader[nameof(Student.Course_id)],
 				Section_id = (reader[nameof(Student.Section_id)] is DBNull) ? null : (int)reader[nameof(Student.Section_id)],
+			};
+		}
+
+		public static Section ToSection(this IDataReader reader)
+		{
+			if(reader is null) throw new ArgumentNullException(nameof(reader));
+			return new Section()
+			{
+				Section_Id = (int)reader[nameof(Section.Section_Id)],
+				Section_Name = (reader[nameof(Section.Section_Name)] is DBNull) ? null : (string)reader[nameof(Section.Section_Name)],
+				Delegate_id = (reader[nameof(Section.Delegate_id)] is DBNull) ? null : (int)reader[nameof(Section.Delegate_id)],
 			};
 		}
 	}

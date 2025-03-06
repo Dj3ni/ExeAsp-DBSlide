@@ -90,6 +90,12 @@ namespace ASP_MVC.Mapper
 			);
 		}
 
+		/// <summary>
+		/// Convert BLL Student Data to fill in StudentUpdate form
+		/// </summary>
+		/// <param name="student"> BLL Student</param>
+		/// <returns>StudentUpdate</returns>
+		/// <exception cref="ArgumentNullException"></exception>
 		public static StudentUpdate ToEditForm(this Student student)
 		{
 			if( student is null) throw new ArgumentNullException( nameof(student));
@@ -106,6 +112,16 @@ namespace ASP_MVC.Mapper
 			};
 		}
 
+		public static StudentDelete ToDeleteForm(this Student student)
+		{
+			if (student is null) throw new ArgumentNullException(nameof(student));
+			return new StudentDelete()
+			{
+				First_Name = student.First_name,
+				Last_Name = student.Last_name,
+				Login = student.Login,
+			};
+		}
 
 	}
 }

@@ -38,6 +38,13 @@ namespace BLL.Entities
 			Course_id = course_id;
 		}
 
+		//public Student(string? first_name, string? last_name, string? login)
+		//{
+		//	First_name = first_name;
+		//	Last_name = last_name;
+		//	Login = login;
+		//}
+
 		public  string? CreateLogin(string? firstname, string? lastname)
 		{
 			if (firstname is null || lastname is null) return null;

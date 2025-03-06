@@ -102,16 +102,27 @@ namespace ASP_MVC.Controllers
 		// GET: StudentController/Delete/5
 		public ActionResult Delete(int id)
 		{
-			return View();
+			try
+			{
+				StudentDelete model = _studentService.GetById(id).ToDeleteForm();
+				return View(model);
+			}
+			catch (Exception)
+			{
+
+				return RedirectToAction("Error", "Home");
+			}
 		}
 
 		// POST: StudentController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
+		public ActionResult Delete(int id, StudentDelete form)
 		{
 			try
 			{
+				//No verification because no change
+				_studentService.Delete(id);
 				return RedirectToAction(nameof(Index));
 			}
 			catch

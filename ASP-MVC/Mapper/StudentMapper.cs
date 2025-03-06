@@ -84,8 +84,9 @@ namespace ASP_MVC.Mapper
 				student.Login,
 				student.Birth_date,
 				student.Course_id,
-				student.Year_result,
-				student.Section_id
+				student.Section_id,
+				student.Year_result
+				
 			);
 		}
 

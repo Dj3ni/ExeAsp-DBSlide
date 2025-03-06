@@ -32,6 +32,10 @@
                 <input asp-for="Year_result" class="form-control" />
                 <span asp-validation-for="Year_result" class="text-danger"></span>
             </div>
+			@Html.HiddenFor(Model=>Model.Student_id)
+			@Html.HiddenFor(Model=>Model.Login)
+			@Html.HiddenFor(Model=>Model.Course_id)
+			@Html.HiddenFor(Model=>Model.Section_id)
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ASP_MVC.Models.Section.SectionListItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Section_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Section_name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section_name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Section_id }) |
+					@Html.ActionLink("Details", "Details", new { id = item.Section_id }) |
+					@Html.ActionLink("Delete", "Delete", new { id = item.Section_id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

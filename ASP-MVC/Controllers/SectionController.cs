@@ -57,10 +57,12 @@ namespace ASP_MVC.Controllers
 		// POST: SectionController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public ActionResult Create(SectionCreate form)
 		{
 			try
 			{
+				if(!ModelState.IsValid)throw new ArgumentException(nameof(form));
+				int id = _sectionService.Insert(form.ToBLL());
 				return RedirectToAction(nameof(Index));
 			}
 			catch

@@ -66,8 +66,9 @@ namespace DAL.Services
 			{
 				using (SqlCommand command = connection.CreateCommand())
 				{
-					command.CommandText = "Insert Into Section (section_name, delegate_id) output Inserted.section_id Values(@section_name, @delegate_id)";
+					command.CommandText = "Insert Into Section (section_id,section_name, delegate_id) output Inserted.section_id Values(@section_id,@section_name, @delegate_id)";
 					command.CommandType = CommandType.Text;
+					command.Parameters.AddWithValue(nameof(Section.Section_Id), section.Section_Id);
 					command.Parameters.AddWithValue(nameof(Section.Section_Name), section.Section_Name);
 					command.Parameters.AddWithValue(nameof(Section.Delegate_id), (section.Delegate_id is null) ? DBNull.Value : section.Delegate_id);
 

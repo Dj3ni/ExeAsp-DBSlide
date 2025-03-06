@@ -37,7 +37,15 @@ namespace ASP_MVC.Controllers
 		// GET: SectionController/Details/5
 		public ActionResult Details(int id)
 		{
-			return View();
+			try
+			{
+				SectionDetails model = _sectionService.GetById(id).ToDetails();
+				return View(model);
+			}
+			catch (Exception)
+			{
+				return RedirectToAction("Index");
+			}
 		}
 
 		// GET: SectionController/Create

@@ -56,5 +56,17 @@ namespace ASP_MVC.Mapper
 		}
 
 
+		public static SectionDelete ToDeleteForm(this Section section)
+		{
+			if( section is null) throw new ArgumentNullException( nameof(section));
+			return new SectionDelete()
+			{
+				Section_Id = section.Section_Id,
+				Section_Name = section.Section_Name
+			};
+		}
+
+
+
 	}
 }

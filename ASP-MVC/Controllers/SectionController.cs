@@ -95,16 +95,18 @@ namespace ASP_MVC.Controllers
 		// GET: SectionController/Delete/5
 		public ActionResult Delete(int id)
 		{
-			return View();
+			SectionDelete model = _sectionService.GetById(id).ToDeleteForm();
+			return View(model);
 		}
 
 		// POST: SectionController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
+		public ActionResult Delete(int id, SectionDelete form)
 		{
 			try
 			{
+				_sectionService.Delete(id);
 				return RedirectToAction(nameof(Index));
 			}
 			catch

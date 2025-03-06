@@ -4,6 +4,6 @@
 	{
 		public int Section_Id {  get; set; }
 
-		public string Section_Name { get; set; }
+		public string? Section_Name { get; set; }
 	}
 }
